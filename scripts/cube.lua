@@ -1,13 +1,36 @@
 local vec2 = require("lib/vec2")
+local trail = require("scripts/cubeTrail")
 
 local cube = {}
 
 function cube.new()
     local c = {
         pos = vec2.new();
+        rot = 0;
         image = love.graphics.newImage("images/cube.png");
         yvel = 0;
+        trails = {};
+        trailCooldown = 0;
     }
+
+    function c.updateTrails(delta)
+        -- Update trails
+        for i, v in ipairs(c.trails) do
+            v.update(delta, i)
+        end
+        -- Spawn trails
+        c.trailCooldown = c.trailCooldown + delta
+        if c.trailCooldown < 0.05 then return end
+        local newTrail = trail.new()
+        newTrail.pos = vec2.new(c.pos.x, c.pos.y)
+        c.trails[#c.trails+1] = newTrail
+    end
+
+    function c.drawTrails()
+        for i, v in ipairs(c.trails) do
+            v.draw()
+        end
+    end
 
     -- Clicking mechanic
     function love.mousepressed(x, y, button, istouch)
@@ -19,9 +42,11 @@ function cube.new()
         -- Falling
         c.yvel = c.yvel + (15 * delta)
         c.pos.y = c.pos.y + c.yvel
+        c.updateTrails(delta)
     end
 
     function c.draw()
+        c.drawTrails()
         local width = c.image:getWidth()
         local height = c.image:getHeight()
         love.graphics.draw(

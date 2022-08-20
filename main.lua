@@ -7,6 +7,7 @@ function TerminateGame()
     Cube = nil
     Pipes = {}
     PipeImage = nil
+    TrailImage = nil
     pSpawnCooldown = 100
 end
 
@@ -15,6 +16,7 @@ function love.load()
     love.graphics.setBackgroundColor(0.09, 0.5, 0.63)
     -- Load images
     PipeImage = love.graphics.newImage("images/pipe.png")
+    TrailImage = love.graphics.newImage("images/trail.png")
     -- Setup objects
     Cube = cube.new()
     Cube.pos.x = 240 ; Cube.pos.y = 270
