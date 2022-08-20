@@ -10,7 +10,7 @@ function cubeTrail.new()
     }
 
     function t.update(delta, i)
-        t.pos.x = t.pos.x - (150 * delta)
+        t.pos.x = t.pos.x - (200 * delta)
         t.alpha = t.alpha - (2.45 * delta)
         t.size = t.size - (1.85 * delta)
         -- Despawn

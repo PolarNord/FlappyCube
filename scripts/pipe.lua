@@ -8,7 +8,7 @@ function pipe.new()
     }
 
     function p.update(delta)
-        p.pos.x = p.pos.x - (150 * delta)
+        p.pos.x = p.pos.x - (200 * delta)
     end
 
     function p.draw()

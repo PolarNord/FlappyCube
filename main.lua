@@ -46,7 +46,7 @@ function love.update(delta)
     updatePipes(delta)
     -- Spawn pipe
     pSpawnCooldown = pSpawnCooldown + delta
-    if pSpawnCooldown < 1.8 then return end
+    if pSpawnCooldown < 1.45 then return end
     spawnPipe(960, math.random(140, 400))
     pSpawnCooldown = 0
 end
