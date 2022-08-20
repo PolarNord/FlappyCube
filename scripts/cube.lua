@@ -6,10 +6,19 @@ function cube.new()
     local c = {
         pos = vec2.new();
         image = love.graphics.newImage("images/cube.png");
+        yvel = 0;
     }
 
-    function c.update(delta)
+    function love.mousepressed(x, y, button, istouch)
+        if button ~= 1 then return end
+        Cube.yvel = -5.5
+    end
 
+    function c.update(delta)
+        -- Falling
+        c.yvel = c.yvel + (15 * delta)
+        c.pos.y = c.pos.y + c.yvel
+        -- Clicking
     end
 
     function c.draw()
@@ -20,7 +29,7 @@ function cube.new()
             1, 1, width/2, height/2
         )
     end
-    
+
     return c
 end
 
