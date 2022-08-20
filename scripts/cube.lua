@@ -9,6 +9,7 @@ function cube.new()
         yvel = 0;
     }
 
+    -- Clicking mechanic
     function love.mousepressed(x, y, button, istouch)
         if button ~= 1 then return end
         Cube.yvel = -5.5
@@ -18,7 +19,6 @@ function cube.new()
         -- Falling
         c.yvel = c.yvel + (15 * delta)
         c.pos.y = c.pos.y + c.yvel
-        -- Clicking
     end
 
     function c.draw()
