@@ -34,3 +34,4 @@ function cubeTrail.new()
 end
 
 return cubeTrail
+

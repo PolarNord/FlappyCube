@@ -5,10 +5,16 @@ local pipe = {}
 function pipe.new()
     local p = {
         pos = vec2.new();
+	lifetime = 0;
     }
 
-    function p.update(delta)
+    function p.update(delta, i)
         p.pos.x = p.pos.x - (200 * delta)
+	-- Despawn
+	p.lifetime = p.lifetime + delta
+	if p.lifetime > 6 then
+            table.remove(Pipes, i)
+	end
     end
 
     function p.draw()
