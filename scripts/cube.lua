@@ -36,13 +36,13 @@ function cube.new()
     -- Clicking mechanic
     function love.mousepressed(x, y, button, istouch)
         if button ~= 1 then return end
-        Cube.yvel = -5.5
+        Cube.yvel = -280
     end
 
     function c.update(delta)
         -- Falling
-        c.yvel = c.yvel + (15 * delta)
-        c.pos.y = c.pos.y + c.yvel
+        c.yvel = c.yvel + (625 * delta)
+        c.pos.y = c.pos.y + c.yvel * delta
         c.updateTrails(delta)
     end
 

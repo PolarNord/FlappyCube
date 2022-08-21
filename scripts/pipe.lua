@@ -10,7 +10,7 @@ function pipe.new()
     }
 
     function p.update(delta, i)
-        p.pos.x = p.pos.x - (200 * delta)
+	p.pos.x = p.pos.x - (200 * delta)
 	-- Check for scoring
 	if Cube.pos.x > p.pos.x and not p.scored then
 	    Score = Score + 1

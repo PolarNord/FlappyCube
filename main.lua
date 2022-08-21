@@ -43,7 +43,7 @@ local function spawnPipe(x, y)
 end
 
 function love.update(delta)
-    print(Score)
+    print(#Cube.trails)
     Cube.update(delta)
     updatePipes(delta)
     -- Spawn pipe
