@@ -1,5 +1,6 @@
 local cube = require("scripts/cube")
 local pipe = require("scripts/pipe")
+local interface = require("scripts/interface")
 
 local pSpawnCooldown
 
@@ -43,9 +44,9 @@ local function spawnPipe(x, y)
 end
 
 function love.update(delta)
-    print(#Cube.trails)
     Cube.update(delta)
     updatePipes(delta)
+    interface.update()
     -- Spawn pipe
     pSpawnCooldown = pSpawnCooldown + delta
     if pSpawnCooldown < 1.45 then return end
@@ -56,4 +57,5 @@ end
 function love.draw()
     Cube.draw()
     drawPipes()
+    interface.draw()
 end
