@@ -14,16 +14,17 @@ function cube.new()
     }
 
     function c.updateTrails(delta)
-        -- Update trails
+	-- Update trails
         for i, v in ipairs(c.trails) do
             v.update(delta, i)
         end
         -- Spawn trails
         c.trailCooldown = c.trailCooldown + delta
-        if c.trailCooldown < 0.05 then return end
+        if c.trailCooldown < 0.025 then return end
         local newTrail = trail.new()
         newTrail.pos = vec2.new(c.pos.x, c.pos.y)
         c.trails[#c.trails+1] = newTrail
+	c.trailCooldown = 0
     end
 
     function c.drawTrails()

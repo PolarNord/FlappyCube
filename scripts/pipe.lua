@@ -6,10 +6,16 @@ function pipe.new()
     local p = {
         pos = vec2.new();
 	lifetime = 0;
+	scored = false;
     }
 
     function p.update(delta, i)
         p.pos.x = p.pos.x - (200 * delta)
+	-- Check for scoring
+	if Cube.pos.x > p.pos.x and not p.scored then
+	    Score = Score + 1
+	    p.scored = true
+	end
 	-- Despawn
 	p.lifetime = p.lifetime + delta
 	if p.lifetime > 6 then

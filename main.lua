@@ -8,6 +8,7 @@ function TerminateGame()
     Pipes = {}
     PipeImage = nil
     TrailImage = nil
+    Score = 0
     pSpawnCooldown = 100
 end
 
@@ -42,6 +43,7 @@ local function spawnPipe(x, y)
 end
 
 function love.update(delta)
+    print(Score)
     Cube.update(delta)
     updatePipes(delta)
     -- Spawn pipe
