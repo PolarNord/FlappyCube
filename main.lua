@@ -10,15 +10,18 @@ function TerminateGame()
     Pipes = {}
     PipeImage = nil
     TrailImage = nil
+    ButtonImage = nil
     Score = 0
     pSpawnCooldown = 100
 end
 
 function StartGame()
     love.graphics.setBackgroundColor(0.09, 0.5, 0.63)
+    interface.load()
     -- Load images
     PipeImage = love.graphics.newImage("images/pipe.png")
     TrailImage = love.graphics.newImage("images/trail.png")
+    ButtonImage = love.graphics.newImage("images/button_bg.png")
     -- Setup objects
     Cube = cube.new()
     Cube.pos.x = 240 ; Cube.pos.y = 270
@@ -54,7 +57,6 @@ function love.update(delta)
     if GameState == "game" then
         Cube.update(delta)
         updatePipes(delta)
-        interface.update()
         -- Spawn pipe
         pSpawnCooldown = pSpawnCooldown + delta
         if pSpawnCooldown < 1.45 then return end
@@ -63,6 +65,7 @@ function love.update(delta)
     elseif GameState == "menu" then
         
     end
+    interface.update(delta)
 end
 
 function love.draw()
