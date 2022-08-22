@@ -12,10 +12,10 @@ function button.new()
     }
 
     function b.update(delta)
-	--print(b.touch)
 	-- Click check
 	if b.touch and not love.mouse.isDown(1) then
-	    print("yo")
+	    -- Click event
+	    if b.event then b.event() end
 	    b.touch = false
         end
 	-- Animations

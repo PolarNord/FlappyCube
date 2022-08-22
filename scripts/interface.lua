@@ -4,13 +4,30 @@ local button = require("scripts/button")
 local interface = {}
 
 function interface.load()
+    -- Start Button
     interface.startButton = button.new()
     interface.startButton.pos = vec2.new(480, 270)
     interface.startButton.text = "Start"
+
+    function interface.startButton.event()
+	GameState = "game"
+	StartGame()
+    end
+    -- Quit Button
+    interface.quitButton = button.new()
+    interface.quitButton.pos = vec2.new(480, 365)
+    interface.quitButton.text = "Quit"
+
+    function interface.quitButton.event()
+	love.event.quit()
+    end
 end
 
 function interface.update(delta)
-    interface.startButton.update(delta)
+    if GameState == "menu" then
+        interface.startButton.update(delta)
+        interface.quitButton.update(delta)
+    end
 end
 
 function interface.draw()
@@ -24,6 +41,7 @@ function interface.draw()
         love.graphics.printf("Flappy Cube", -25, 120, 1000, "center")
         -- Draw start button
         interface.startButton.draw()
+	interface.quitButton.draw()
     end
 end
 
