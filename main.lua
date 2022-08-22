@@ -37,7 +37,7 @@ end
 -- Pipe related functions
 local function updatePipes(delta)
     for i, v in ipairs(Pipes) do
-        v.update(delta, i)
+    	v.update(delta, i)
     end
 end
 
