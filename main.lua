@@ -3,9 +3,10 @@ local pipe = require("scripts/pipe")
 local interface = require("scripts/interface")
 
 local pSpawnCooldown
+GameState = "game"
 
 function TerminateGame()
-    Cube = nil
+    Cube = cube.new()
     Pipes = {}
     PipeImage = nil
     TrailImage = nil
@@ -13,8 +14,7 @@ function TerminateGame()
     pSpawnCooldown = 100
 end
 
-function love.load()
-    TerminateGame()
+function StartGame()
     love.graphics.setBackgroundColor(0.09, 0.5, 0.63)
     -- Load images
     PipeImage = love.graphics.newImage("images/pipe.png")
@@ -22,6 +22,13 @@ function love.load()
     -- Setup objects
     Cube = cube.new()
     Cube.pos.x = 240 ; Cube.pos.y = 270
+    GameState = "game"
+end
+
+function love.load()
+    TerminateGame()
+    StartGame()
+    GameState = "menu"
 end
 
 -- Pipe related functions
@@ -44,18 +51,24 @@ local function spawnPipe(x, y)
 end
 
 function love.update(delta)
-    Cube.update(delta)
-    updatePipes(delta)
-    interface.update()
-    -- Spawn pipe
-    pSpawnCooldown = pSpawnCooldown + delta
-    if pSpawnCooldown < 1.45 then return end
-    spawnPipe(960, math.random(140, 400))
-    pSpawnCooldown = 0
+    if GameState == "game" then
+        Cube.update(delta)
+        updatePipes(delta)
+        interface.update()
+        -- Spawn pipe
+        pSpawnCooldown = pSpawnCooldown + delta
+        if pSpawnCooldown < 1.45 then return end
+        spawnPipe(960, math.random(140, 400))
+        pSpawnCooldown = 0
+    elseif GameState == "menu" then
+        
+    end
 end
 
 function love.draw()
-    Cube.draw()
-    drawPipes()
+    if GameState == "game" then
+        Cube.draw()
+        drawPipes()
+    end
     interface.draw()
 end
